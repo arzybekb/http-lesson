@@ -1,4 +1,4 @@
-export const baseURL = `URLiner`;
+export const baseURL = `'http://peaksoftlms-backend.eu-central-1.elasticbeanstalk.com/api`;
 export const JWT_TOKEN_KEY = "JWT_TOKEN_KEY";
 export const ROUTES = {
   MAIN_PAGE: "/MAIN-PAGE",
