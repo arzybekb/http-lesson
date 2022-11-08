@@ -8,9 +8,9 @@ function Sidebar() {
     <Container id="sidebar">
       <Wrapper>
         <NavLink to={`/dashboard${ROUTES.COURSES}`}>Курсы</NavLink>
-        <NavLink to={`/dashboard${ROUTES.PRODUCTS}`}>Товары</NavLink>
+        <NavLink to={`/dashboard${ROUTES.GROUPS}`}>Группы</NavLink>
         <NavLink to={`/dashboard${ROUTES.WISH_LIST}`}>Избранные</NavLink>
-        <NavLink to={`/dashboard${ROUTES.BOUGHT}`}>Покупки</NavLink>
+        <NavLink to={`/dashboard${ROUTES.STUDENTS}`}>Студенты</NavLink>
       </Wrapper>
     </Container>
   );

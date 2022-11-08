@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import {
   createCourseRequest,
-  getCoursesRequst,
+  getCoursesRequest,
   getCourseByIdRequst,
   updateCourseRequest,
   deleteCourseRequest,
@@ -15,12 +15,12 @@ export const createCourse = (courseData, onClose, notify) => {
       const dataWithFile = {
         courseName: courseData.courseName,
         description: courseData.description,
-        imageId: 0,
-        createdAt: format(courseData.createdAt, "yyyy-MM-dd"),
+        image: "https://cdn.betterttv.net/emote/5de76fe0f6e95977b50e6875/3x",
+        dateOfStart: format(courseData.createdAt, "yyyy-MM-dd"),
       };
       if (courseData.binaryImage) {
-        const uploadFileId = await uploadFileRequest(courseData.binaryImage);
-        dataWithFile.imageId = uploadFileId.fileId;
+        const { data } = await uploadFileRequest(courseData.binaryImage);
+        dataWithFile.image = data.link;
       }
       const data = await createCourseRequest(dataWithFile);
       dispatch(getCourses());
@@ -34,7 +34,7 @@ export const createCourse = (courseData, onClose, notify) => {
 export const getCourses = () => {
   return async (dispatch) => {
     try {
-      const data = await getCoursesRequst();
+      const { data } = await getCoursesRequest();
       dispatch(courseActions.setCourse(data));
     } catch (error) {
       console.log(error);
@@ -70,7 +70,7 @@ export const updateCourse = (courseData, courseId, notify, onClose) => {
         const uploadedFile = await uploadFileRequest(formData);
         dataWithFile.imageId = uploadedFile.fileId;
       }
-      const data = await updateCourseRequest(courseId, dataWithFile);
+      const { data } = await updateCourseRequest(courseId, dataWithFile);
       dispatch(getCourses());
       onClose();
       return notify(`${data.message}`);
@@ -81,10 +81,13 @@ export const updateCourse = (courseData, courseId, notify, onClose) => {
   };
 };
 
-export const deleteCourseAction = (courseId) => {
-  return async () => {
+export const deleteCourseAction = (courseId, notify) => {
+  return async (dispatch) => {
     try {
       const data = await deleteCourseRequest(courseId);
+      console.log(data);
+      notify("Успешно удалён!");
+      dispatch(getCourses());
       return data;
     } catch (e) {
       console.log(e);

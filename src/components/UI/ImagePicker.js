@@ -1,8 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { styled, Typography } from "@mui/material";
-import drop from '../../assets/images/drop.svg'
-
+import drop from "../../assets/images/drop.svg";
 
 const ImagePicker = ({ getPhoto, photo }) => {
   const [errors, setErrors] = useState("");
@@ -32,6 +31,7 @@ const ImagePicker = ({ getPhoto, photo }) => {
         <Image
           src={photo || drop}
           alt="there should be a photo here"
+          id={Math.random()}
         />
       </DropZoneWrapper>
       <StyledTypography fontSize="14px" isError={errors}>

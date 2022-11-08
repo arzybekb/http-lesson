@@ -3,12 +3,15 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import Button from "../components/UI/Button/Button";
+import CourseCard from "../components/UI/CourseCard.js/CourseCard";
+import useEnqueueSnackbar from "../components/UI/SnackBar/useEnqueueSnackbar";
 import { deleteCourseAction, getCourses } from "../store/course/courseActions";
 import AddCourse from "./AddCourse/AddCourse";
 import EditCourse from "./AddCourse/EditCourse";
 
 function Course() {
   const dispatch = useDispatch();
+  const notify = useEnqueueSnackbar();
   const { courses } = useSelector((state) => state.courses);
   const [params, setParams] = useSearchParams();
   const { addCourse, editCourse } = Object.fromEntries([...params]);
@@ -28,8 +31,8 @@ function Course() {
   const openEditCourse = (courseId) => {
     setParams({ editCourse: true, courseId });
   };
-  const sumbitDelete = (courseId) => {
-    dispatch(deleteCourseAction(courseId));
+  const submitDelete = (courseId) => {
+    dispatch(deleteCourseAction(courseId, notify));
   };
 
   return (
@@ -43,12 +46,15 @@ function Course() {
       <CardWrap>
         {courses.map((course) => {
           return (
-            <div key={course.id}>
-              <img width="200px" src={course.imageLink} alt="img" />
-              <p>{course.courseName}</p>
-              <p onClick={() => openEditCourse(course.id)}>edit</p>
-              <span onClick={() => sumbitDelete(course.id)}>delete</span>
-            </div>
+            <CourseCard
+              key={course.id}
+              image={course.image}
+              date={course.dateOfStart}
+              courseName={course.courseName}
+              openEditCourse={() => openEditCourse(course.id)}
+              submitDelete={() => submitDelete(course.id)}
+              description={course.description}
+            />
           );
         })}
       </CardWrap>
@@ -72,7 +78,5 @@ const CardWrap = styled("div")`
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
-  color: white;
 `;

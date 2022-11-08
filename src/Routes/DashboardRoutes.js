@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import Bought from "../pages/Bought";
+import Students from "../pages/Students";
 import Course from "../pages/Course";
-import Products from "../pages/Products";
+import Groups from "../pages/Groups";
 import WishList from "../pages/WishList";
 import { ROUTES } from "../utils/constants/general";
 import DashboardLayout from '../layout/dashboard/DashboardLayout'
@@ -14,8 +14,8 @@ function DashboardRoutes() {
         <Route path="/" element={<Navigate to="COURSES" />} />
         <Route path={ROUTES.COURSES} element={<Course />} />
         <Route path={ROUTES.WISH_LIST} element={<WishList />} />
-        <Route path={ROUTES.PRODUCTS} element={<Products />} />
-        <Route path={ROUTES.BOUGHT} element={<Bought />} />
+        <Route path={ROUTES.GROUPS} element={<Groups />} />
+        <Route path={ROUTES.STUDENTS} element={<Students />} />
       </Routes>
     </DashboardLayout>
   );

@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { getStorageItem } from "./utils/helpers/localStorageHelpers";
 import { JWT_TOKEN_KEY } from "./utils/constants/general";
 import { userActions } from "./store/user/userSlice";
+
 function App() {
   const isAuthorized = useSelector((state) => state.user.isAuthorized);
   const dispatch = useDispatch();

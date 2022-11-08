@@ -6,24 +6,19 @@ import {
 } from "../../utils/helpers/localStorageHelpers";
 import { userActions } from "./userSlice";
 
-export const logIn = (
-  { email, password },
-  navigateToDashboard,
-  onClose,
-  notify
-) => {
+export const logIn = (userData, navigateToDashboard, onClose, notify) => {
   return async (dispatch) => {
     try {
-      const data = await loginRequest({ email, password });
+      const { data } = await loginRequest(userData);
       console.log(data);
-      const userCredetials = { accessToken: data.token };
-      addItemToStorage(data.token, JWT_TOKEN_KEY);
+      const userCredetials = { accessToken: data?.token };
+      addItemToStorage(data?.token, JWT_TOKEN_KEY);
       dispatch(userActions.logIn(userCredetials));
-      navigateToDashboard();
       onClose();
       notify("Успешный вход", "success");
-    } catch (error) {
-      notify(error.message, "error");
+      navigateToDashboard();
+    } catch ({ response: { data } }) {
+      notify(data.httpStatus, "error");
     }
   };
 };
