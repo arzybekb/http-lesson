@@ -9,8 +9,8 @@ function Sidebar() {
       <Wrapper>
         <NavLink to={`/dashboard${ROUTES.COURSES}`}>Курсы</NavLink>
         <NavLink to={`/dashboard${ROUTES.GROUPS}`}>Группы</NavLink>
-        <NavLink to={`/dashboard${ROUTES.WISH_LIST}`}>Избранные</NavLink>
         <NavLink to={`/dashboard${ROUTES.STUDENTS}`}>Студенты</NavLink>
+        <NavLink to={`/dashboard${ROUTES.WISH_LIST}`}>Избранные</NavLink>
       </Wrapper>
     </Container>
   );

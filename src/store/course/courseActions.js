@@ -1,4 +1,3 @@
-import { format } from "date-fns";
 import {
   createCourseRequest,
   getCoursesRequest,
@@ -16,15 +15,16 @@ export const createCourse = (courseData, onClose, notify) => {
         courseName: courseData.courseName,
         description: courseData.description,
         image: "https://cdn.betterttv.net/emote/5de76fe0f6e95977b50e6875/3x",
-        dateOfStart: format(courseData.createdAt, "yyyy-MM-dd"),
+        dateOfStart: courseData.createdAt,
       };
+      console.log(dataWithFile);
       if (courseData.binaryImage) {
         const { data } = await uploadFileRequest(courseData.binaryImage);
         dataWithFile.image = data.link;
       }
-      const data = await createCourseRequest(dataWithFile);
+      await createCourseRequest(dataWithFile);
       dispatch(getCourses());
-      notify(data.message);
+      notify("Курс успешно добавлен!");
       onClose();
     } catch (error) {
       notify(error.message, "error");
@@ -61,7 +61,7 @@ export const updateCourse = (courseData, courseId, notify, onClose) => {
       const dataWithFile = {
         imageId: 0,
         courseName: courseData.courseName,
-        createdAt: format(courseData.creationAt, "yyyy-MM-dd"),
+        createdAt: courseData.creationAt,
         description: courseData.description,
       };
       if (courseData.binaryImage) {

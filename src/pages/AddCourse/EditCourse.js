@@ -12,7 +12,7 @@ function EditCourse({ courseId, onClose }) {
   const [singleCourseData, setSingleCourseData] = useState(null);
 
   const setFormValues = (course) => {
-    console.log(course);
+
     setSingleCourseData({
       courseName: course.courseName,
       description: course.description,
