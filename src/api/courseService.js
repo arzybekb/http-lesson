@@ -30,17 +30,17 @@ export const getCoursesRequest = () => {
   return axiosInstance.get("/course");
 };
 
-// export const getCoursesRequst = async () => {
-//   const response = await fetch(baseURL + "/course", {
-//     headers: {
-//       Authorization: `Bearer ${accessToken}`,
-//     },
-//   });
-//   if (!response.ok) {
-//     throw new Error("Не удалось получить курсы");
-//   }
-//   return response.json();
-// };
+export const getCoursesRequst = async () => {
+  const response = await fetch(baseURL + "/course", {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  if (!response.ok) {
+    throw new Error("Не удалось получить курсы");
+  }
+  return response.json();
+};
 
 export const getCourseByIdRequst = async (id) => {
   const response = await fetch(baseURL + `/courses/${id}`, {

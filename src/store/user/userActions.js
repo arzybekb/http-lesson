@@ -22,6 +22,7 @@ export const logIn = (userData, navigateToDashboard, onClose, notify) => {
     }
   };
 };
+
 export const logOut = () => {
   return (dispatch) => {
     removeItemFromStorage(JWT_TOKEN_KEY);

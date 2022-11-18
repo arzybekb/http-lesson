@@ -10,6 +10,7 @@ import { userActions } from "./store/user/userSlice";
 function App() {
   const isAuthorized = useSelector((state) => state.user.isAuthorized);
   const dispatch = useDispatch();
+  
   useEffect(() => {
     const token = getStorageItem(JWT_TOKEN_KEY);
     if (token) {

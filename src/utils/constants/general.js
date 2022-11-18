@@ -4,7 +4,7 @@ export const ROUTES = {
   MAIN_PAGE: "/MAIN-PAGE",
   DASHBOARD: "/dashboard",
   NOT_FOUND: "*",
-  COURSES: "/COURSES",
+  COURSES: "/courses",
   GROUPS: "/groups",
   WISH_LIST: "/wish-list",
   STUDENTS: "/students",

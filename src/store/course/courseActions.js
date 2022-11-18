@@ -17,7 +17,6 @@ export const createCourse = (courseData, onClose, notify) => {
         image: "https://cdn.betterttv.net/emote/5de76fe0f6e95977b50e6875/3x",
         dateOfStart: courseData.createdAt,
       };
-      console.log(dataWithFile);
       if (courseData.binaryImage) {
         const { data } = await uploadFileRequest(courseData.binaryImage);
         dataWithFile.image = data.link;
@@ -31,10 +30,12 @@ export const createCourse = (courseData, onClose, notify) => {
     }
   };
 };
+
 export const getCourses = () => {
   return async (dispatch) => {
     try {
       const { data } = await getCoursesRequest();
+
       dispatch(courseActions.setCourse(data));
     } catch (error) {
       console.log(error);
@@ -75,7 +76,6 @@ export const updateCourse = (courseData, courseId, notify, onClose) => {
       onClose();
       return notify(`${data.message}`);
     } catch (err) {
-      console.log(err);
       notify("Something went wrong", "error");
     }
   };

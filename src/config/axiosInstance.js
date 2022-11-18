@@ -7,11 +7,13 @@ const headers = { "Content-Type": "application/json" };
 
 const axiosInstance = axios.create({ baseURL, headers });
 
+console.log(axiosInstance.interceptors.request);
 axiosInstance.interceptors.request.use((config) => {
   const updatedConfig = { ...config };
   const {
     user: { accessToken },
   } = store.getState();
+
   if (accessToken)
     updatedConfig.headers.Authorization = `Bearer ${accessToken}`;
 

@@ -1,5 +1,5 @@
 import axiosInstance from "../config/axiosInstance";
-// import { baseURL } from "../utils/constants/general";
+import { baseURL } from "../utils/constants/general";
 
 export const loginRequest = (userData) => {
   return axiosInstance.post("/auth/login", userData);
